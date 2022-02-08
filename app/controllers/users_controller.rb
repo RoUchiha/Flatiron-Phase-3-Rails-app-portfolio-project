@@ -21,7 +21,17 @@ class UsersController < ApplicationController
     end
 
     def show
-
+        @user = current_user
+        if logged_in?
+            if @user == User.find_by(id: params[:id])
+                render :show 
+            else
+                flash[:alert] = "You cannot access another user's settings!"
+                redirect_to user_shows_path(@user)
+            end
+        else
+            redirect_to root_path
+        end
     end
 
     def edit
