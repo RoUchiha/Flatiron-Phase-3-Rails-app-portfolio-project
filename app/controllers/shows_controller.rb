@@ -18,16 +18,28 @@ class ShowsController < ApplicationController
         else
             @show = Show.all.find_by(id: params[:id])
         end
+    end
 
 
     def new
-        @show = Show.new(user_id: params[:user_id])
+        if logged_in?
+            @show = Show.new(user_id: params[:user_id])
+        else
+            flash[:alert] = "You must be logged in to create a new show!"
+            redirect_to root_path
+        end
+    end
+
+    def create
+
     end
 
 
     private
 
         def show_params
+            params.require(:show).permit(:name, :genre, :episodes, :status, :user_id)
+        end
 
 
 end

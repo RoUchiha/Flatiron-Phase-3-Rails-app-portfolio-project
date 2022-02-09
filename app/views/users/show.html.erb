@@ -17,12 +17,16 @@
     <% end %>
     </ol>
 <% end %>
-<br><br>
+<br>
 <% if @show_user == current_user %>
     <%= button_to "All Your Shows", user_shows_path(@show_user) %>
+    <br>
+    <%= button_to "Add a New Show", new_user_show_path(@show_user), method: :get %>
 <% end %>
 
-<br><br>
+
+
+<br><br><br>
     <%= button_to "All Shows in Database", shows_path, method: :get %>
 <br><br>
     <%= button_to "Back to All Users", users_path, method: :get %>
