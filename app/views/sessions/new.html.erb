@@ -1,0 +1,24 @@
+<h2>Login</h2>
+
+<br>
+
+<h3><%= button_to "Login via Github", '/auth/github' %></h3>
+
+<br>
+
+<h3>Or login with your TV Show Tracker account</h3>
+<%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br><br>
+    <%= f.submit "Login" %>
+<% end %>
+
+<br><br><br>
+
+<p>Don't have an account? Sign up using the link below!</p>
+<br>
+<%= button_to "Sign Up", new_user_path, method: :get%>

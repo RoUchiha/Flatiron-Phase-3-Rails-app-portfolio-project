@@ -1,9 +1,7 @@
 <h2>Welcome to TV Show Tracker</h2>
 <p>Keep track of your TV show watchlist!</p>
 
-    <% if flash[:alert] %>
-     <%= flash[:alert] %>
-    <% end %>
+   
 
 
 <% if !current_user %>
@@ -11,8 +9,14 @@
     <br>
     <%= button_to "Log In", login_path, :method => "get" %>
 <% else %>
-    <%= button_to "Your Shows", user_path(current_user) %>
+    <%= button_to "Your Profile", user_path(current_user), method: :get%>
     <br>
-    <%= button_to "Add A New Show", new_user_show_path(current_user)%>
+    <%= button_to "All Your Shows", user_shows_path(current_user), method: :get %>
+    <br>
+    <%= button_to "Add A New Show", new_user_show_path(current_user), method: :get%>
+    <br><br>
+    <button><%= link_to "All Users", users_path %></button>
+    <br><br>
+    <button><%= link_to "All Shows", shows_path %></button>
     <br><br>
 <% end %>

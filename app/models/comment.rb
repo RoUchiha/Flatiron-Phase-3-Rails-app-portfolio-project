@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
 
-    validates :content, length: {minimum: 1 }
+    validates :content, presence: true 
+    validates :content, length: {minimum: 2 }
 
     belongs_to :user 
     belongs_to :show 

@@ -1,0 +1,11 @@
+<h2>All Users</h2>
+
+<br>
+
+<ol>
+<% @users.each do |u| %>    
+    <li><button><%=link_to u.username, user_path(u) %></button>
+     <br><button><%= link_to "#{u.username}'s shows", user_shows_path(u) %></button></li>
+     <br><br>
+<% end %>
+</ol>

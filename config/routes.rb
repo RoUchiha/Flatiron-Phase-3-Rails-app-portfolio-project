@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  resources :comments 
-  resources :ratings
+  
   resources :shows do
     resources :comments 
     resources :ratings 
   end
+ 
   resources :users do
     resources :shows
   end
 
-  get '/auth/google/callback', to: 'users#google_login'
+  get '/auth/github/callback', to: 'users#github_login'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

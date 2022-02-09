@@ -1,0 +1,35 @@
+<% if @show_user == current_user  %>
+    <h2><%= "Welcome to your profile, #{@show_user.full_name}!"%></h2>
+<% else %>
+ <h2><%= "#{@show_user.username}'s profile" %></h2>
+<% end %>
+
+<br><br>
+
+<h3>Favorite Shows</h3>
+<% if @show_user.favorite_shows.empty? %>
+    <p>- No favorite shows to display! -</p>
+<% else %>
+    <ol>
+    <% @show_user.favorite_shows.each do |s| %>
+        <li><%= s.name %> 
+        <br><%= "Rating: #{s.rating}" %></li>
+    <% end %>
+    </ol>
+<% end %>
+<br><br>
+<% if @show_user == current_user %>
+    <%= button_to "All Your Shows", user_shows_path(@show_user) %>
+<% end %>
+
+<br><br>
+    <%= button_to "All Shows in Database", shows_path, method: :get %>
+<br><br>
+    <%= button_to "Back to All Users", users_path, method: :get %>
+
+
+<br><br><br><br>
+
+<% if @show_user == current_user %>
+    <%= button_to "Edit Your Account Info", edit_user_path(@user), method: :get %>
+<% end %>

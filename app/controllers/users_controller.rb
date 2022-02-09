@@ -2,6 +2,16 @@ class UsersController < ApplicationController
 
     helper_method :logged_in?, :current_user
     
+    def index
+        if logged_in?
+            @users = User.all 
+        else
+            flash[:alert] = "You must be logged in to view that page!"
+            redirect_to root_path
+        end
+    end
+
+
     def new
         if logged_in?
             redirect_to user_shows_path(current_user)
@@ -14,31 +24,59 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_shows_path(@user)
+            redirect_to user_path(session[:user_id])
         else
             render :new 
         end
     end
 
     def show
-        @user = current_user
+        @show_user = User.find_by(id: params[:id])
         if logged_in?
-            if @user == User.find_by(id: params[:id])
-                render :show 
-            else
-                flash[:alert] = "You cannot access another user's settings!"
-                redirect_to user_shows_path(@user)
-            end
+            render :show 
         else
+            flash[:alert] = "You must be logged in to view that page!"
             redirect_to root_path
         end
     end
 
-    def edit
+    def github_login
+        @user = User.find_by(username: auth[:info][:nickname])
 
+        if @user.nil?
+            @user = User.new(
+                username: auth[:info][:nickname],
+                full_name: auth[:info][:name],
+                password: SecureRandom.uuid
+            )
+        end
+        if @user.save 
+            session[:user_id] = @user.id 
+            redirect_to user_path(session[:user_id])
+        else
+            render :new 
+        end
     end
 
-    
+    def edit
+        @edit_user = User.find_by(id: params[:id])
+        if @edit_user == current_user
+            render :edit 
+        else
+            flash[:alert] = "You can't edit someone else's account!"
+            redirect_to root_path 
+        end
+    end
+
+    def update
+        @user = User.find_by(id: params[:id])
+        @user.update(user_params)
+        if @user.save 
+            redirect_to user_path(session[:user_id])
+        else
+            render :edit 
+        end
+    end
 
 
     private

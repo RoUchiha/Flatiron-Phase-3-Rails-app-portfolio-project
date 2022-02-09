@@ -9,15 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <h1>TV Show Tracker</h1>
-  <%= button_to "Home", root_path, :method => "get" %>
+  <%= button_to "HOME", root_path, :method => "get" %>
 
   <br><br>
   <body>
+
+    <% if flash[:alert] %>
+    <strong><h1><%= flash[:alert] %></h1></strong>
+    <% end %>
+<br><br>
     <%= yield %>
   </body>
 
-  <br><br><br><br>
+  <br><br><br><br><br>
   <% if logged_in? %>
-    <%= button_to "Log Out", logout_path, :method => "post" %>
+    <%= button_to "LOG OUT", logout_path, method: :get %>
   <% end %>
 </html>

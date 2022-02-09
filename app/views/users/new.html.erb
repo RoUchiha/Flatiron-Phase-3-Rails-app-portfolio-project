@@ -1,0 +1,37 @@
+<h2>Sign Up for TV Show Tracker</h2>
+<h3><strong><%= button_to "Sign Up via Github", '/auth/github' %></strong></h3>
+<br>
+<h3>Or enter your sign up info below:</h3>
+
+
+
+<% if @user.errors.any? %>
+    <ul>
+        <% @user.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :full_name, "Full Name" %>
+    <%= f.text_field :full_name %>
+    <br>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation %>
+    <br>
+    <%= f.submit "Sign Up" %>
+<% end %>
+
+<br><br>
+
+<h3>Already have an account? <%= button_to "Log In", login_path, method: :get %></h3>
