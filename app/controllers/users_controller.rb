@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     end
 
 
+
     def new
         if logged_in?
             redirect_to user_shows_path(current_user)
