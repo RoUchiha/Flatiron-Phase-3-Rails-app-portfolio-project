@@ -12,9 +12,9 @@ class ShowsController < ApplicationController
     end
 
     def show 
-        @user = User.find_by(id: params[:user_id])
-        if @user
-            @show = @user.shows.find_by(id: params[:id])
+        @show_user = User.find_by(id: params[:user_id])
+        if @show_user
+            @show = @show_user.shows.find_by(id: params[:id])
         else
             @show = Show.all.find_by(id: params[:id])
         end
@@ -31,7 +31,31 @@ class ShowsController < ApplicationController
     end
 
     def create
+        @user = User.find_by(id: session[:user_id])
+        @show = @user.shows.build(show_params)
+        if @show.save 
+            redirect_to user_show_path(@user, @show)
+        else
+            render :new
+        end
+    end
 
+    def edit 
+        @editing_user = User.find_by(id: params[:user_id])
+        if @editing_user == current_user
+            @show = Show.find_by(id: params[:id])
+        else
+            flash[:alert] = "You can't edit someone else's show!"
+            redirect_to root_path
+        end
+
+    end
+
+
+    def update
+        @show = Show.find_by(id: params[:id])
+        @show.update(show_params)
+        redirect_to show_path(@show)
     end
 
 

@@ -1,0 +1,12 @@
+<% @shows.each do |s| %>
+    <ul>
+        <li><%= link_to "#{s.name}", show_path(s) %><br>
+        Genre: <%= s.genre%><br>
+        <%= s.episodes %> episodes
+        </li>
+    </ul>
+<% end %>
+<br><br><br>
+<% if logged_in? %>
+    <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>
+<% end %>

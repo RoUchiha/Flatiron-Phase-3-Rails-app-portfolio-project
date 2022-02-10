@@ -1,0 +1,18 @@
+<h2><%= @show.name %></h2>
+
+<h3><%= @show.genre %></h3>
+
+<h3><%= @show.episodes %></h3>
+
+
+<% if @show.user == current_user %>
+    <h3><%= @show.status%>
+    <br> 
+    <% if @show.status == "watched" || @show.status == "Watched" %>
+        <%= render partial "ratings/form" %>
+    <% end %>
+    <br><br>
+    <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
+    <br><br>
+    <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>
+<% end %>

@@ -1,0 +1,25 @@
+<% if @show.errors.any? %>
+    <ul>
+        <% @show.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @show do |f| %>
+    <%= f.hidden_field :user_id, value: current_user %>
+    
+    <%= f.label :name, "Name of Show" %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+    <br>
+    <%= f.label :episodes, "Total number of episodes"  %>
+    <%= f.number_field :episodes%>
+    <br>
+    <%= f.label :status, "Watching, Watched, or Plan to Watch?" %>
+    <%= f.text_field :status %>
+    <br><br>
+    <%= f.submit "Create Show" %>
+<% end %>

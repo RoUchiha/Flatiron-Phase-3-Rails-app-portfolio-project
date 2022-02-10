@@ -2,12 +2,13 @@ class Show < ApplicationRecord
 
     validates :name, presence: true
     validates :genre, presence: true
-    validates :episodes, numericality: { only_integer: true }
+    validates :episodes, presence: true, numericality: { only_integer: true }
     before_validation { self.status = self.status.downcase }
-    validates :status, inclusion: { in: ["watching", "plan to watch", "watched"]}
+    validates :status, presence: true, inclusion: { in: ["watching", "plan to watch", "watched"]}
+    after_validation { self.status = self.status.upcase }
 
     belongs_to :user 
     has_many :comments
-    has_many :ratings 
+    has_one :rating
 
 end
