@@ -19,7 +19,7 @@
 <% end %>
 <br>
 <% if @show_user == current_user %>
-    <%= button_to "All Your Shows", user_shows_path(@show_user) %>
+    <%= button_to "All Your Shows", user_shows_path(@show_user), method: :get %>
     <br>
     <%= button_to "Add a New Show", new_user_show_path(@show_user), method: :get %>
 <% end %>

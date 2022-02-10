@@ -6,8 +6,8 @@
     </ul>
 <% end %>
 
-<%= form_for @show do |f| %>
-    <%= f.hidden_field :user_id, value: current_user %>
+<%= form_for(@show) do |f| %>
+    <%= f.hidden_field :user_id, value: @user.id %>
     
     <%= f.label :name, "Name of Show" %>
     <%= f.text_field :name %>

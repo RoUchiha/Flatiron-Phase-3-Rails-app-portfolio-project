@@ -23,6 +23,7 @@ class ShowsController < ApplicationController
 
     def new
         if logged_in?
+            @user = current_user
             @show = Show.new(user_id: params[:user_id])
         else
             flash[:alert] = "You must be logged in to create a new show!"
