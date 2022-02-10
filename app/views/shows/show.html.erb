@@ -9,8 +9,10 @@
     <h3><%= @show.status%>
     <br> 
     <% if @show.status == "watched" || @show.status == "Watched" %>
-        <%= render partial "ratings/form" %>
+        <%= render partial: "ratings/form" %>
     <% end %>
+    <br>
+    <%= button_to "Edit Show", edit_user_show_path(current_user, @show), method: :get%>
     <br><br>
     <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
     <br><br>

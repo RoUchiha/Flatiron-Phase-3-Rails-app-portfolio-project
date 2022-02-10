@@ -5,7 +5,7 @@ class Show < ApplicationRecord
     validates :episodes, presence: true, numericality: { only_integer: true }
     before_validation { self.status = self.status.downcase }
     validates :status, presence: true, inclusion: { in: ["watching", "plan to watch", "watched"]}
-    after_validation { self.status = self.status.upcase }
+    after_validation { self.status = self.status.capitalize }
 
     belongs_to :user 
     has_many :comments

@@ -56,7 +56,11 @@ class ShowsController < ApplicationController
     def update
         @show = Show.find_by(id: params[:id])
         @show.update(show_params)
-        redirect_to show_path(@show)
+        if @show.save 
+            redirect_to show_path(@show)
+        else
+            render :edit
+        end
     end
 
 
