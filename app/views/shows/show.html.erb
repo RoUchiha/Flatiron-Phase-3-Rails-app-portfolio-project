@@ -4,7 +4,8 @@
 
 <h3><%= @show.episodes %></h3>
 
-
+<h3>Created by: <%= link_to @show.user.username, user_path(@show.user) %>
+<br><br>
 <% if @show.user == current_user %>
     <h3><%= @show.status%>
     <br> 
