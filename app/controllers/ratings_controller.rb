@@ -16,7 +16,8 @@ class RatingsController < ApplicationController
         if @rating.save 
             redirect_to user_show_path(current_user, @show.id)
         else 
-            render :
+            render 'shows/show'
+        end
     end
 
 
