@@ -8,7 +8,7 @@ class RatingsController < ApplicationController
         
         @rating = Rating.new(show_id: params[:show_id] )       
         
-            
+        @show = Show.all.find_by(id: params[:show_id])
     end
 
     def create
