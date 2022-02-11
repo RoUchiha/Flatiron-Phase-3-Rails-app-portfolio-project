@@ -1,3 +1,7 @@
+<% if flash[:title] %>
+  <h2><%= flash[:title] %></h2>
+<% end %>
+
 <% @shows.each do |s| %>
     <ul>
         <li><%= link_to "#{s.name}", show_path(s) %><br>

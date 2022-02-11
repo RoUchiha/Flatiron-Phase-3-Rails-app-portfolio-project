@@ -6,8 +6,10 @@ class ShowsController < ApplicationController
         @user = User.find_by(id: params[:user_id])
         if @user 
             @shows = @user.shows.uniq 
+            flash[:title] = "All Your Shows"
         else
             @shows = Show.all 
+            flash[:title] = "All Shows in Database"
         end
     end
 
@@ -16,7 +18,6 @@ class ShowsController < ApplicationController
         @show_user = User.find_by(id: params[:user_id])
         if @show_user
             @show = @show_user.shows.find_by(id: params[:id])
-            @rating = Rating.all.find_by(show_id: params[:id])
         else
             @show = Show.all.find_by(id: params[:id])
         end

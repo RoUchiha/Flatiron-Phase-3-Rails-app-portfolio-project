@@ -12,9 +12,14 @@ class RatingsController < ApplicationController
     end
 
     def create
+        @show = Show.all.find_by(id: params[:show_id])
         @rating = Rating.new(rating_params)
-        
-        redirect_to show_path(@rating.show_id)
+
+        if @rating.save 
+            redirect_to show_path(@rating.show_id)
+        else
+            render :new 
+        end
     end
 
 
