@@ -9,11 +9,12 @@
 <% if @show.user == current_user %>
     <h3>Viewing status: <%= @show.status%>
     <br> <br>
-    <% if @show.status == "Watched" && @show.rating == nil  %>
+    <% if @show.status == "Watched" && @show.ratings.empty?  %>
        <%= button_to "Rate Show?", new_show_rating_path(@show), method: :get %>
        
-    <% else %>
-        Rating: <%= @show.rating %>
+    <% elsif @show.status == "Watched" && !@show.ratings.empty? %>
+        Rating: <%= @show.ratings %>
+    
     <% end %>
     <br><br>
     <%= button_to "Edit Show", edit_user_show_path(current_user, @show), method: :get%>
