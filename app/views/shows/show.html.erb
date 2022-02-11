@@ -11,7 +11,8 @@
     <br> <br>
     <% if @show.status == "Watched" && @show.ratings.empty?  %>
        <%= button_to "Rate Show?", new_show_rating_path(@show), method: :get %>
-       
+       <%= @show.ratings.count %>
+        
     <% elsif @show.status == "Watched" && !@show.ratings.empty? %>
         Rating: <%= @show.ratings %>
     
