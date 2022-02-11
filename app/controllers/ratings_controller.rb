@@ -1,23 +1,20 @@
 class RatingsController < ApplicationController
 
-    helper_method :logged_in?, :current_user, :current_show
-
+    helper_method :logged_in?, :current_user
+    
 
 
     def new
-        @show = current_show
-        @rating = Rating.new(show_id: @show.id )
-        
+        if params[:show_id]
+            @rating = Rating.new(show_id: params[:show_id] )       
+        end
+            
     end
 
     def create
-        @show = current_show
-        @rating = @show.rating.build(rating_params)
-        if @rating.save 
-            redirect_to user_show_path(current_user, @show.id)
-        else 
-            render 'shows/show'
-        end
+        @rating = Rating.new(rating_params)
+  
+        redirect_to show_path(@rating.show_id)
     end
 
 
@@ -27,8 +24,5 @@ class RatingsController < ApplicationController
             params.require(:rating).permit(:show_id, :score)
         end
 
-        def current_show
-            @show = Show.find_by(id: params[:id])
-        end
-
+        
 end

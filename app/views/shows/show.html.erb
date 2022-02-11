@@ -1,20 +1,23 @@
-<h2><%= @show.name %></h2>
+<h2>Name: <%= @show.name %></h2>
 
-<h3><%= @show.genre %></h3>
+<h3>Genre: <%= @show.genre %></h3>
 
-<h3><%= @show.episodes %></h3>
+<h3>Number of episodes: <%= @show.episodes %></h3>
 
 <h3>Created by: <%= link_to @show.user.username, user_path(@show.user) %>
 <br><br>
 <% if @show.user == current_user %>
-    <h3><%= @show.status%>
-    <br> 
-    <% if @show.status == "Watched" || @show.status == "Watched" %>
-        <%= render partial: "ratings/form" %>
+    <h3>Viewing status: <%= @show.status%>
+    <br> <br>
+    <% if @show.status == "Watched" && @show.rating == nil  %>
+       <%= button_to "Rate Show?", new_show_rating_path(@show), method: :get %>
+       
+    <% else %>
+        Rating: <%= @show.rating %>
     <% end %>
-    <br>
-    <%= button_to "Edit Show", edit_user_show_path(current_user, @show), method: :get%>
     <br><br>
+    <%= button_to "Edit Show", edit_user_show_path(current_user, @show), method: :get%>
+    <br><br><br>
     <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
     <br><br>
     <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>

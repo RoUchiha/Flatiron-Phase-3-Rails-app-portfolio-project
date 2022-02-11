@@ -12,11 +12,11 @@ class ShowsController < ApplicationController
     end
 
     def show 
-        
+        session[:current_url] = 
         @show_user = User.find_by(id: params[:user_id])
         if @show_user
             @show = @show_user.shows.find_by(id: params[:id])
-            @rating = @show.ratings.build(show_id: @show.id)
+            @rating = Rating.all.find_by(show_id: params[:id])
         else
             @show = Show.all.find_by(id: params[:id])
         end
