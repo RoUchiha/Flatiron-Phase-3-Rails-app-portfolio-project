@@ -9,7 +9,7 @@
 <% if @show.user == current_user %>
     <h3><%= @show.status%>
     <br> 
-    <% if @show.status == "watched" || @show.status == "Watched" %>
+    <% if @show.status == "Watched" || @show.status == "Watched" %>
         <%= render partial: "ratings/form" %>
     <% end %>
     <br>

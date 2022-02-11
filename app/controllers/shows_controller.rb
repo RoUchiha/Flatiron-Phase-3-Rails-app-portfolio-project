@@ -12,9 +12,11 @@ class ShowsController < ApplicationController
     end
 
     def show 
+        
         @show_user = User.find_by(id: params[:user_id])
         if @show_user
             @show = @show_user.shows.find_by(id: params[:id])
+            @rating = @show.ratings.build(show_id: @show.id)
         else
             @show = Show.all.find_by(id: params[:id])
         end
