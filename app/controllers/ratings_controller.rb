@@ -8,11 +8,11 @@ class RatingsController < ApplicationController
         
         @rating = Rating.new(show_id: params[:show_id] )       
         
-        @show = Show.all.find_by(id: params[:show_id])
+        @show = Show.find_by(id: params[:show_id])
     end
 
     def create
-        @show = Show.all.find_by(id: params[:show_id])
+        @show = Show.find_by(id: params[:show_id])
         @rating = Rating.new(rating_params)
 
         if @rating.save 
