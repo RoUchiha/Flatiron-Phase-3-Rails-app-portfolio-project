@@ -12,8 +12,10 @@ class User < ApplicationRecord
     def favorite_shows
         @favs = []
         self.shows.each do |s|
-            if s.ratings.first.to_i > 90
-                @favs << s 
+            s.ratings.each do |r|
+                if r.score >= 90
+                    @favs << s 
+                end
             end
         end
         return @favs.sort 
