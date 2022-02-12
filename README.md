@@ -11,7 +11,7 @@
 
 ## Install
 
-Fork and clone repository
+- Fork and clone repository
 
 ```
 bundle install
@@ -22,7 +22,7 @@ bundle install
 ```
 rails s
 ```
-Then navigate to the local url given in the terminal ( eg. http://localhost:3000 )
+- Then navigate to the local url given in the terminal ( eg. http://localhost:3000 )
 
 ## Author
 
