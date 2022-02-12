@@ -8,24 +8,28 @@
 <br><br>
 <% if @show.user == current_user %>
     <h3>Viewing status: <%= @show.status%>
+<% end %>
     <br> <br>
-    <% if @show.status == "Watched" && @show.ratings.empty?  %>
+    <% if @show.status == "Watched" && @show.ratings.empty? && @show.user == current_user  %>
        <%= button_to "Rate Show?", new_show_rating_path(@show), method: :get, locals: {show: @show, rating: @rating } %>
-        
+        <br>
     <% elsif @show.status == "Watched" && !@show.ratings.empty? %>
         Rating: <%= @show.ratings.first.score %>/100
         <br><br>
     <% end %>
-    <% if @show.status == "Watched" && @show.comments.empty? %>
+    <% if @show.status == "Watched" && @show.comments.empty? && @show.user == current_user %>
         <%= button_to "Leave a Comment/Review?", new_show_comment_path(@show), method: :get, locals: {show: @show, comment: @comment } %>
     <% elsif @show.status == "Watched" && !@show.comments.empty? %>
         <p>Comment/Review: <%= @show.comments.first.content %></p>
     <% end %>
 
     <br><br>
+<% if @show.user == current_user %>
     <%= button_to "Edit Show Info, Rating, and Review", edit_user_show_path(current_user, @show), method: :get%>
     <br><br><br>
+<% end %>
+    <%= button_to "Back to All Shows", shows_path, method: :get %>
+    <br><br>
     <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
     <br><br>
     <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>
-<% end %>
