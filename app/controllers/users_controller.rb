@@ -33,6 +33,8 @@ class UsersController < ApplicationController
 
     def show
         @show_user = User.find_by(id: params[:id])
+        @recent_show = current_user.shows.finished.most_recent
+
         if logged_in?
             render :show 
         else
