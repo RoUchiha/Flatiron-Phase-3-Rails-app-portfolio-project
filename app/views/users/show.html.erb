@@ -11,10 +11,12 @@
     <p>- No favorite shows to display! -</p>
 <% else %>
     <ol>
-    <% @show_user.favorite_shows.each do |s| %>
+    <% @show_user.shows.each do |s| %>
+        <% if s.ratings.favorite_shows %>
         <li><%= link_to s.name, show_path(s) %> 
         <br><%= "Rating: #{s.ratings.first.score}" %><br>
         <%= "Review/Comment: #{s.comments.first.content}" %></li>
+        <% end %>
     <% end %>
     </ol>
 <% end %>
