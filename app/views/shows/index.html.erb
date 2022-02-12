@@ -10,6 +10,8 @@
         </li>
     </ul>
 <% end %>
+<br><br>
+<%= button_to "All Users", users_path, method: :get %>
 <br><br><br>
 <% if logged_in? %>
     <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>

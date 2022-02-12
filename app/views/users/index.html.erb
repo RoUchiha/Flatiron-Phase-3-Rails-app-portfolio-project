@@ -9,3 +9,12 @@
      <br><br>
 <% end %>
 </ol>
+
+<br><br>
+<%= button_to "All Shows", shows_path, method: :get %>
+<br><br><br>
+<% if logged_in? %>
+    <%= button_to "Back to Your Profile", user_path(current_user), method: :get %>
+    <br><br>
+    <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
+<% end %>
