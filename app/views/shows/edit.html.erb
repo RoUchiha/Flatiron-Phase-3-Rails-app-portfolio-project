@@ -31,10 +31,23 @@
 
         <%= f.label :score, "Please give the show a rating between 0 and 100: " %>
         <%= f.number_field :score, in: 0..100 %>
-        <br>
-        
-        <br>
+        <br><br>
         <%= f.submit "Update Rating" %>
+    <% end %>
+<% end %>
+
+<br><br>
+
+<% if !@show.comments.empty? %>
+    <%= form_for([@user, @show, @comment], :url => edit_show_comment_path(@show), method: :post) do |f| %>
+    <%= f.hidden_field :show_id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <%= f.label :content, "Leave a review/comment that other users can see!" %>
+    <br>
+    <%= f.text_area :content %>
+    <br><br>
+    <%= f.submit "Update Comment/Review" %>
     <% end %>
 <% end %>
 

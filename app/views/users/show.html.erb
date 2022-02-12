@@ -12,7 +12,7 @@
 <% else %>
     <ol>
     <% @show_user.favorite_shows.each do |s| %>
-        <li><%= s.name %> 
+        <li><%= link_to s.name, show_path(s) %> 
         <br><%= "Rating: #{s.ratings.first.score}" %></li><br>
     <% end %>
     </ol>
