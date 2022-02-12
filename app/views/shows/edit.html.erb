@@ -39,7 +39,7 @@
 <br><br>
 
 <% if !@show.comments.empty? %>
-    <%= form_for([@user, @show, @comment], :url => edit_show_comment_path(@show), method: :post) do |f| %>
+    <%= form_for([@user, @show, @comment], :url => show_comment_path(@show)) do |f| %>
     <%= f.hidden_field :show_id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
 

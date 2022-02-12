@@ -23,6 +23,24 @@ class CommentsController < ApplicationController
         end
     end
 
+    def edit 
+        @user = current_user
+        @show = Show.find_by(id: params[:show_id])
+        @comment = @show.comments.first 
+    end
+
+    def update 
+        @user = current_user
+        @show = Show.find_by(id: params[:show_id])
+        @comment = @show.comments.first 
+        @comment.update(comment_params)
+        if @comment.save 
+            redirect_to show_path(@show)
+        else
+            render 'shows/edit'
+        end
+    end
+
 
     private 
 
