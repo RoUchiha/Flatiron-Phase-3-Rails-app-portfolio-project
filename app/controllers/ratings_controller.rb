@@ -18,7 +18,7 @@ class RatingsController < ApplicationController
         if @rating.save 
             redirect_to show_path(@rating.show_id)
         else
-            render :new 
+            render 'shows/new'
         end
     end
 
