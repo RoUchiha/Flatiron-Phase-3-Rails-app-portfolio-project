@@ -7,6 +7,10 @@
         <li><%= link_to "#{s.name}", show_path(s) %><br>
         Genre: <%= s.genre%><br>
         <%= s.episodes %> episodes
+        <br>
+        <% if !s.ratings.empty? %>
+            User Rating: <%= s.ratings.first.score %>
+        <% end %>
         </li>
     </ul>
 <% end %>
