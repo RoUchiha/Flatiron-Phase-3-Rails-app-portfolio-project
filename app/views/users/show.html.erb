@@ -19,7 +19,7 @@
     <% end %>
     <br><br>
     <% if @show_user.shows.find_by(status: "Watched") %>
-        Most recently finished show: <%= link_to @recent_show.first.name, show_path(@recent_show.first) %>
+        Most recently finished show: <%= link_to @recent_show.first.name, show_path(@recent_show.first.id) %>
     <% end %>
     </ol>
 <% end %>
