@@ -13,7 +13,8 @@
     <ol>
     <% @show_user.favorite_shows.each do |s| %>
         <li><%= link_to s.name, show_path(s) %> 
-        <br><%= "Rating: #{s.ratings.first.score}" %></li><br>
+        <br><%= "Rating: #{s.ratings.first.score}" %><br>
+        <%= "Review/Comment: #{s.comments.first.content}" %></li>
     <% end %>
     </ol>
 <% end %>

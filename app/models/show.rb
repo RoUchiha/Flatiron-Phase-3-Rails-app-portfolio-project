@@ -1,5 +1,6 @@
 class Show < ApplicationRecord
 
+
     validates :name, presence: true
     after_validation { self.name = self.name.titleize }
     validates :genre, presence: true
