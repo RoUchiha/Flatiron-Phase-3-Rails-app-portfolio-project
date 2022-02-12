@@ -15,7 +15,7 @@
         <li><%= link_to s.name, show_path(s) %> 
         <br><%= "Rating: #{s.ratings.first.score}" %><br>
         <%= "Review/Comment: #{s.comments.first.content}" %></li>
-        
+        <br>
     <% end %>
     <br><br>
     <% if @show_user.shows.find_by(status: "Watched") %>
