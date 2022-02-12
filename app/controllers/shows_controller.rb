@@ -49,6 +49,7 @@ class ShowsController < ApplicationController
         if @editing_user == current_user
             @show = Show.find_by(id: params[:id])
             @rating = @show.ratings.first
+            @comment = @show.comments.first 
         else
             flash[:alert] = "You can't edit someone else's show!"
             redirect_to root_path

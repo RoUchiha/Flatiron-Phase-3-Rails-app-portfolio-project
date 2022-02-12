@@ -14,7 +14,8 @@
         
     <% elsif @show.status == "Watched" && !@show.ratings.empty? %>
         Rating: <%= @show.ratings.first.score %>
-    
+        <br>
+        <%= button_to "Leave a Comment/Review?", new_show_comment_path(@show), method: :get, locals: {show: @show, comment: @comment } %>
     <% end %>
     <br><br>
     <%= button_to "Edit/Delete Show", edit_user_show_path(current_user, @show), method: :get%>
