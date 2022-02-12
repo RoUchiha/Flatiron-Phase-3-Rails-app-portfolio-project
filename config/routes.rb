@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
   resources :shows do
-    resources :comments, only: [:index, :show, :new, :edit]
+    resources :comments
     resources :ratings
   end
  
  
   resources :users do
-    resources :shows, only: [:index, :show, :new, :edit]
+    resources :shows
   end
 
   get '/auth/github/callback', to: 'users#github_login'

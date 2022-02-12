@@ -22,6 +22,22 @@ class RatingsController < ApplicationController
         end
     end
 
+    def edit 
+        @show = Show.find_by(id: params[:show_id])
+        @rating = @show.ratings.first 
+    end
+
+    def update 
+        @show = Show.find_by(id: params[:show_id])
+        @rating = @show.ratings.first 
+        @rating.update(rating_params)
+        if @rating.save 
+            redirect_to show_path(@rating.show_id)
+        else
+            render 'shows/edit'
+        end
+    end
+
 
     private
 

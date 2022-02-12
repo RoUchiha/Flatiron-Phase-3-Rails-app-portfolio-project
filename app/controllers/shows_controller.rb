@@ -48,6 +48,7 @@ class ShowsController < ApplicationController
         @editing_user = User.find_by(id: params[:user_id])
         if @editing_user == current_user
             @show = Show.find_by(id: params[:id])
+            @rating = @show.ratings.first
         else
             flash[:alert] = "You can't edit someone else's show!"
             redirect_to root_path
@@ -59,6 +60,7 @@ class ShowsController < ApplicationController
     def update
         @show = Show.find_by(id: params[:id])
         @show.update(show_params)
+        
         if @show.save 
             redirect_to show_path(@show)
         else

@@ -22,3 +22,19 @@
     <br><br>
     <%= f.submit "Update Show" %>
 <% end %>
+
+<br><br>
+
+<% if !@show.ratings.empty? %>
+    <%= form_for([@show, @rating]) do |f| %>
+        <%= f.hidden_field :show_id %>
+
+        <%= f.label :score, "Please give the show a rating between 0 and 100: " %>
+        <%= f.number_field :score, in: 0..100 %>
+        <br>
+        
+        <br>
+        <%= f.submit "Update Rating" %>
+    <% end %>
+<% end %>
+
