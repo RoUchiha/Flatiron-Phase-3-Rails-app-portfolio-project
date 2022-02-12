@@ -1,6 +1,14 @@
-<%= form_for([@show, @comment], :url => show_comments_path(@show), method: :post) do |f| %>
+<% if @comment.errors.any? %>
+    <ul>
+        <% @comment.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for([@user, @show, @comment], :url => show_comments_path(@show), method: :post) do |f| %>
     <%= f.hidden_field :show_id %>
-    <%= f.hidden_field :user_id, value: current_user %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
 
     <%= f.label :content, "Leave a review/comment that other users can see!" %>
     <br>
