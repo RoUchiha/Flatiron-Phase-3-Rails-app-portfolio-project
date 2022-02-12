@@ -17,7 +17,7 @@
     
     <% end %>
     <br><br>
-    <%= button_to "Edit Show", edit_user_show_path(current_user, @show), method: :get%>
+    <%= button_to "Edit/Delete Show", edit_user_show_path(current_user, @show), method: :get%>
     <br><br><br>
     <%= button_to "Back to Your Shows", user_shows_path(current_user), method: :get %>
     <br><br>

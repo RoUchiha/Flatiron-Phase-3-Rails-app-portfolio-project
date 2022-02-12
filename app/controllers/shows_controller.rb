@@ -68,6 +68,12 @@ class ShowsController < ApplicationController
         end
     end
 
+    def destroy
+        @show = Show.find_by(id: params[:id])
+        @show.destroy
+        redirect_to user_shows_path(current_user)
+    end
+
 
     private
 

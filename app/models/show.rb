@@ -10,7 +10,7 @@ class Show < ApplicationRecord
     after_validation { self.status = self.status.titleize }
 
     belongs_to :user 
-    has_many :comments
-    has_many :ratings
+    has_many :comments, :dependent => :destroy
+    has_many :ratings, :dependent => :destroy
 
 end
