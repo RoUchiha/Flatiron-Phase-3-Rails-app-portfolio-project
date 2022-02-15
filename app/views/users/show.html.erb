@@ -14,7 +14,9 @@
     <% @show_user.favorite_shows.each do |s| %>
         <li><%= link_to s.name, show_path(s) %> 
         <br><%= "Rating: #{s.ratings.first.score}" %><br>
+        <% if s.comments.first %>
         <%= "Review/Comment: #{s.comments.first.content}" %></li>
+        <% end %>
         <br>
     <% end %>
     <br><br>
