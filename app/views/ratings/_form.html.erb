@@ -10,7 +10,7 @@
 
 <%= form_for([@show, @rating], :url => show_ratings_path(@show), method: :post) do |f| %>
     <%= f.hidden_field :show_id %>
-
+    
     <%= f.label :score, "Please give the show a rating between 0 and 100: " %>
     <%= f.number_field :score, in: 0..100 %>
     <br>

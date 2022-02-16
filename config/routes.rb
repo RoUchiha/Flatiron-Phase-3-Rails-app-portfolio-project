@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :reviews
   resources :shows do
     resources :comments
     resources :ratings

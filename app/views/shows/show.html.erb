@@ -23,6 +23,11 @@
         <p>Comment/Review: <%= @show.comments.first.content %></p>
     <% end %>
 
+    <% if !@show.ratings.empty? %>
+    <%= @show.ratings.first.review.id %>
+    <% end %>
+
+
     <br><br>
 <% if @show.user == current_user %>
     <%= button_to "Edit Show Info, Rating, and Review", edit_user_show_path(current_user, @show), method: :get%>

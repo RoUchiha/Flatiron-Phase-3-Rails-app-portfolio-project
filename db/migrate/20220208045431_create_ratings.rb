@@ -3,6 +3,7 @@ class CreateRatings < ActiveRecord::Migration[5.2]
     create_table :ratings do |t|
       t.integer :score
       t.integer :show_id
+      t.integer :review_id
 
       t.timestamps
     end

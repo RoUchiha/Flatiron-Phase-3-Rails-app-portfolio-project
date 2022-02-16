@@ -17,6 +17,7 @@ class ShowsController < ApplicationController
         session[:current_url] = 
         @show_user = User.find_by(id: params[:user_id])
         if @show_user
+            @review = Review.new 
             @show = @show_user.shows.find_by(id: params[:id])
         else
             @show = Show.all.find_by(id: params[:id])
@@ -45,8 +46,8 @@ class ShowsController < ApplicationController
     end
 
     def edit 
-        @editing_user = User.find_by(id: params[:user_id])
-        if @editing_user == current_user
+        @user = User.find_by(id: params[:user_id])
+        if @user == current_user
             @show = Show.find_by(id: params[:id])
             @rating = @show.ratings.first
             @comment = @show.comments.first 
