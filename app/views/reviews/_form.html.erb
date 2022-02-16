@@ -1,0 +1,5 @@
+<%= form_for(@review, :url => show_reviews_path(@show), method: :post) do |f| %>
+    <%= f.label :yes_no, "Please type YES if you recommend this show or NO if you do not recommend" %><br>
+    <%= f.text_field :yes_no %><br><br>
+<%= f.submit "Submit Recommendation" %>
+<% end %>

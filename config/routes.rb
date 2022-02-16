@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :reviews
+ 
   resources :shows do
     resources :comments
-    resources :ratings
+    resources :ratings 
+    resources :reviews
   end
  
+  resources :reviews
  
   resources :users do
     resources :shows

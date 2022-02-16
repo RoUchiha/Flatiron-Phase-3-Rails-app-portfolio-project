@@ -24,8 +24,10 @@
     <% end %>
 
     <% if !@show.ratings.empty? %>
-    <%= @show.ratings.first.review.id %>
+        <%= button_to "Recommend?", new_show_review_path(@show), method: :get %>
     <% end %>
+
+    <%= @show.ratings.first.review.shows.first.name %>
 
 
     <br><br>
