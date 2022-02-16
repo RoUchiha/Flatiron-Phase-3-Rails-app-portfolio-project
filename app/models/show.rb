@@ -3,7 +3,6 @@ class Show < ApplicationRecord
     scope :finished, -> { where(status: "Watched") }
     scope :most_recent, -> {order("created_at DESC").limit(1)}
 
-    
     validates :name, presence: true
     after_validation { self.name = self.name.titleize }
     validates :genre, presence: true
