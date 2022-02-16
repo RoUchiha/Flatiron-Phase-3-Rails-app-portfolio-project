@@ -11,13 +11,15 @@ class RatingsController < ApplicationController
         @review = Review.new 
         @review.shows << @show 
         
+        @shows = Show.all 
+        @reviews = Review.all 
         
     end
 
     def create
         @show = Show.find_by(id: params[:show_id])
         @rating = Rating.new(rating_params)
-        @review = Review.new 
+        @review = Review.find_by(id: params[:rating][:review_id]) 
         @review.ratings << @rating 
         if @rating.save 
             redirect_to show_path(@rating.show_id)

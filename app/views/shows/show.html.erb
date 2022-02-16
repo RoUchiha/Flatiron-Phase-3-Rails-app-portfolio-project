@@ -22,7 +22,17 @@
         
         <% end %>
     <% end %>
+<br><br><br>
+
+       <%= button_to "Create New Rating", new_show_rating_path(@show), method: :get %>
+
+
+    <%= Rating.last.review.yes_no %>
+
+
     <br><br>
+
+
     <% if @show.status == "Watched" && @show.comments.empty? && @show.user == current_user %>
         <%= button_to "Leave a Comment/Review?", new_show_comment_path(@show), method: :get, locals: {show: @show, comment: @comment } %>
     <% elsif @show.status == "Watched" && !@show.comments.empty? %>

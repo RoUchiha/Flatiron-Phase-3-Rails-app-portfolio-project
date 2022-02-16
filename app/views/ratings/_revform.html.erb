@@ -1,0 +1,23 @@
+<% if @rating.errors.any? %>
+    <ul>
+        <% @rating.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+
+<%= form_for([@show, @rating], :url => show_ratings_path(@show), method: :post) do |f| %>
+    <%= f.hidden_field :show_id %>
+    <%= f.hidden_field :review_id %>
+    <%= f.collection_select(:show_id, Show.all, :id, :name) %>
+    <br>
+    <%= f.collection_select(:review_id, Review.all, :id, :yes_no) %>
+    <br>
+    <%= f.label :score, "Please give a 0 if you agree with the rating and a 1 if you do not: " %>
+    <%= f.number_field :score, in: 0..1 %>
+    <br>
+    
+    <br>
+    <%= f.submit "Rate Show" %>
+<% end %>
