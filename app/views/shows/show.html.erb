@@ -30,7 +30,7 @@
     <% end %>
     
 <br>
-    <% if !@show.ratings.empty?  %>
+    <% if @show.user == current_user && !@show.ratings.empty?  %>
         <%= button_to "Recommend?", new_show_review_path(@show), method: :get %>
     <% end %>
 
