@@ -16,18 +16,25 @@
     <% elsif @show.status == "Watched" && !@show.ratings.empty? %>
         Rating: <%= @show.ratings.first.score %>/100
         <br><br>
+        <% if !@show.ratings.empty? && @show.ratings.first.review.yes_no  %>
+            Recommended? ===> <%= @show.ratings.first.review.yes_no.upcase %>
+    
+        
+        <% end %>
     <% end %>
+    <br><br>
     <% if @show.status == "Watched" && @show.comments.empty? && @show.user == current_user %>
         <%= button_to "Leave a Comment/Review?", new_show_comment_path(@show), method: :get, locals: {show: @show, comment: @comment } %>
     <% elsif @show.status == "Watched" && !@show.comments.empty? %>
         <p>Comment/Review: <%= @show.comments.first.content %></p>
     <% end %>
-
-    <% if !@show.ratings.empty? %>
+    
+<br>
+    <% if !@show.ratings.empty?  %>
         <%= button_to "Recommend?", new_show_review_path(@show), method: :get %>
     <% end %>
 
-    <%= @show.ratings.first.review.shows.first.name %>
+
 
 
     <br><br>
